@@ -1,4 +1,4 @@
-from sqlalchemy import Table, Column, Integer, String, DateTime, ForeignKey
+from sqlalchemy import Table, Column, Integer, Text, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 from sqlalchemy.ext.declarative import declared_attr, declarative_base
@@ -43,7 +43,7 @@ class Tag(Base):
     """
 
     name = Column(
-        String(constants.TAG_NAME_MAX_LENGTH),
+        Text(),
         unique=True
     )
 
@@ -56,17 +56,17 @@ class Statement(Base, StatementMixin):
     confidence = 0
 
     text = Column(
-        String(constants.STATEMENT_TEXT_MAX_LENGTH)
+        Text()
     )
 
     search_text = Column(
-        String(constants.STATEMENT_TEXT_MAX_LENGTH),
+        Text(),
         nullable=False,
         server_default=''
     )
 
     conversation = Column(
-        String(constants.CONVERSATION_LABEL_MAX_LENGTH),
+        Text(),
         nullable=False,
         server_default=''
     )
@@ -83,18 +83,18 @@ class Statement(Base, StatementMixin):
     )
 
     in_response_to = Column(
-        String(constants.STATEMENT_TEXT_MAX_LENGTH),
+        Text(),
         nullable=True
     )
 
     search_in_response_to = Column(
-        String(constants.STATEMENT_TEXT_MAX_LENGTH),
+        Text(),
         nullable=False,
         server_default=''
     )
 
     persona = Column(
-        String(constants.PERSONA_MAX_LENGTH),
+        Text(),
         nullable=False,
         server_default=''
     )
